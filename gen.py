@@ -21,8 +21,8 @@ for entry in listdir('.'):
 # Write the file
 with open(fp, 'w') as out:
     out.write("[//]: # (scanned texts)\n")
-    for page in args.pages:
-        out.write('<img src="http://library.ctext.org/s1890343/s1890343_0{}.png" width="170">\n'.format(page))
+    for page in args.pages[::-1]:
+        out.write('<img src="http://library.ctext.org/s1890343/s1890343_{}.png" width="170">\n'.format(page.zfill(4)))
     out.write("\n[//]: # (texts)\n")
 
 print("{} is generated".format(fp))
