@@ -16,22 +16,29 @@ parser.add_argument('-v2', '--volume_2', action='store_true',
                     help="Set this flag if you want to work on volume 2")
 args = parser.parse_args()
 
+# Image URL
 URL_V1 = "http://library.ctext.org/s1890343/s1890343_{}.png"
 URL_V2 = "http://library.ctext.org/s1890344/s1890344_{}.png"
+# Page URL
+URL_P1 = "http://ctext.org/library.pl?if=gb&file=92738&page={}"
+URL_P2 = "http://ctext.org/library.pl?if=gb&file=92739&page={}"
+# Max Page number
 MAX_V1 = 204
 MAX_V2 = 224
 
 if args.volume_2:
     max_page = MAX_V2
     url = URL_V2
+    url_p = URL_P2
 else:
     max_page = MAX_V1
     url = URL_V1
+    url_p = URL_P1
 
 # Browsing mode
 if args.random:
     page = random.randint(1, max_page)
-    wopen(url.format(str(page).zfill(4)), new=2, autoraise=True)
+    wopen(url_p.format(str(page)), new=2, autoraise=True)
 
 # Generating Markdown mode
 elif args.pages:
