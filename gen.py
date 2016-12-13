@@ -47,6 +47,8 @@ elif args.pages:
 
     # Getting file name
     fp = 'p' + args.name + '.md' if args.name else 'p' + args.pages[0] + '.md'
+    if args.volume_2 and not args.name:
+        fp = 'v2' + fp
 
     # Check duplicate
     for entry in listdir('.'):
