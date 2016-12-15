@@ -14,6 +14,9 @@ parser.add_argument('-r', '--random', action='store_true',
                     help="Set this flag if you want to browse a random page")
 parser.add_argument('-v2', '--volume_2', action='store_true',
                     help="Set this flag if you want to work on volume 2")
+parser.add_argument('-o', '--open', action='store_true',
+                    help="Set this flag if you want to open the text picture\
+                        after creating the file.")
 args = parser.parse_args()
 
 # Image URL
@@ -65,4 +68,9 @@ elif args.pages:
         out.write("\n[//]: # (texts)\n")
 
     print("{} is generated".format(fp))
+
+    # If -o is set, open the corresponding text pictures in browser
+    if args.open:
+        for page in args.pages[::-1]:
+            wopen(url.format(str(page).zfill(4)), new=2, autoraise=True)
 
